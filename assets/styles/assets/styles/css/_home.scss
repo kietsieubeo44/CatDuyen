@@ -1,0 +1,76 @@
+.home-ui {
+    position: absolute;
+    z-index: 10;
+    left: 50%;
+    top: calc(50% + 130px);
+    transform: translate(-50%, -50%);
+    width: calc(100% - 100px);
+    height: 90px;
+    visibility: hidden;
+    user-select: none;
+}
+
+.home-ui-title {
+    position: relative;
+    font-family: 'Yeseva';
+    font-size: 13px;
+    text-align: center;
+    color: #c75440;
+    letter-spacing: 2px;
+}
+
+.home-ui-description {
+    position: relative;
+    font-family: 'Voltaire';
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 17px;
+    color: white;
+    letter-spacing: 1px;
+    margin-top: 10px;
+}
+
+.home-ui-cta {
+    position: relative;
+    width: 34px;
+    height: 34px;
+    left: 50%;
+    padding: 0;
+    transform: translate(-50%, 0%);
+    margin-top: 10px;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.home-ui-cta:hover .home-ui-cta-bgr {
+    width: 132%;
+    height: 132%;
+    left: 34%;
+    top: 34%;
+}
+
+.home-ui-cta-bgr {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #c75440;
+    transition: width .2s, height .2s, left .2s, top .2s;
+}
+
+.home-ui-cta-text {
+    position: absolute;
+    color: white;
+    font-family: 'Voltaire';
+    font-size: 18px;
+    text-align: center;
+    text-transform: uppercase;
+    left: 50%;
+    top: calc(50% + 1px);
+    transform: translate(-50%, -50%);
+}

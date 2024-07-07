@@ -1,754 +1,178 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="not-ready" lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Hạ Duyên</title>
+    <link rel="stylesheet" href="/assets/styles/main-118c38b05f.min.css">
 
-    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="Moments of Happiness, a series of WebGL experiments that will make you smile.">
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" value="summary">
+    <meta name="twitter:site" content="@epicwebagency">
+    <meta name="twitter:title" content="Moments of Happiness">
+    <meta name="twitter:description"
+        content="Moments of Happiness, a series of WebGL experiments that will make you smile.">
+    <meta name="twitter:image" content="https://moments.epic.net/assets/images/twitter-03a7f61646.jpg">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="Moments of Happiness">
+    <meta property="og:type" content="game">
+    <meta property="og:url" content="https://moments.epic.net">
+    <meta property="og:description"
+        content="Moments of Happiness, a series of WebGL experiments that will make you smile.">
+    <meta property="og:image" content="https://moments.epic.net/assets/images/facebook-0837e885ef.jpg">
+
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
 </head>
 
 <body>
-    <div id="world"></div>
-    <div id="instructions">Press and drag to make wind<br /><span class="lightInstructions">the lion will surely
-            appreciate</span></div>
-
-    <div id="credits">
-        <p>Prints on <a class="society6" href="https://society6.com/yakudoo/" target="blank">society6</a> | <a
-                href="https://codepen.io/Yakudoo/" target="blank">my other codepens</a> | <a href="https://www.epic.net"
-                target="blank">epic.net</a></p>
+    <div class="about-block">
+        <div class="about-block-info">
+            <h1 class="about-block-title">Moments of<br /><span class="big">Happiness</span></h1>
+            <div class="about-block-description">
+                <p>
+                    <strong>Moments of Happiness</strong> is a side project made by <span class="linkAbout"><a
+                            href="https://www.epic.net" target="_blank">EPIC Agency</a></span>.
+                    <br />A series of WebGL experiments developed to make you smile (and spin your fans) using <span
+                        class="linkAbout"><a href="http://threejs.org" target="_blank">Three.js</a></span> and <span
+                        class="linkAbout"><a href="http://greensock.com" target="_blank">GSAP Library</a></span>.
+                    <br />Source codes are available on <span class="linkAbout"><a href="http://codepen.io/Yakudoo"
+                            target="_blank">codepen</a></span> for educational purposes only.
+                    <br />These experiments are not fully optimized and might not work on some browsers or devices.
+                </p>
+                <p><span class="lightSignature"> Happily coded by <span class="linkAbout"><a
+                                href="http://twitter.com/yakudoo" target="_blank">Karim Maaloul</a></span></span>
+                </p>
+            </div>
+            <div class="about-block-close">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 30 30"
+                    enable-background="new 0 0 30 30" xml:space="preserve" width: "30px" height="30px">
+                    <path d="M28.7,1.3c-0.8-0.8-2-0.8-2.8,0L15,12.2L4.2,1.3c0,0,0,0,0,0c-0.8-0.8-2-0.8-2.8,0c-0.8,0.8-0.8,2,0,2.8
+	L12.2,15L1.3,25.8c-0.8,0.8-0.8,2,0,2.8c0.8,0.8,2,0.8,2.8,0L15,17.8l10.8,10.8c0.8,0.8,2,0.8,2.8,0c0.8-0.8,0.8-2,0-2.8
+	c0,0,0,0,0,0L17.8,15L28.7,4.2C29.4,3.4,29.4,2.1,28.7,1.3z" />
+                </svg>
+            </div>
+        </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <div class="wrapper">
+        <div class="size-disclaimer">
+            <div class="about-block-info">
+                <div class="about-block-title">Moments of<br /><span class="big">Happiness</span></div>
+                <div class="about-block-description">
+                    Sorry, you can't enjoy this experience on this device.<br />Please, try this experience on a larger
+                    screen or on a desktop computer
+                    that has a more powerful graphic card.
+                </div>
+            </div>
+        </div>
+        <div class="bgrHolder">
+            <div class="bgr bgr1"></div>
+            <div class="bgr bgr2"></div>
+        </div>
+        <div class="dragon-score">00</div>
+        <div class="world"></div>
+        <div class="gameover-instructions">Game Over</div>
+        <div class="top-score">000</div>
+        <div class="home-ui">
+            <div class="home-ui-title"></div>
+            <div class="home-ui-description"></div>
+            <div class="home-ui-cta">
+                <div class="home-ui-cta-bgr"></div>
+                <div class="home-ui-cta-text">go</div>
+            </div>
+        </div>
+        <div class="experience-info">
+            <div class="experience-info-top">
+                <div class="experience-info-order"></div>
+                <div class="experience-info-instructions"></div>
+                <div class="experience-info-title"></div>
+            </div>
+
+        </div>
+        <div class="about-nav link-border-color">
+            <svg class="speakerIcon link-border-color" fill="#231F20" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 70 70"
+                enable-background="new 0 0 70 70" xml:space="preserve">
+                <g>
+                    <path
+                        d="M32.4,57.8c-1.4,0-2.8-0.5-3.8-1.6L19,47l-4.9,0C8.5,47,4,42.5,4,37v-3.7c0-2.6,0.9-5.1,2.5-6.9 C8.4,24.2,11.1,23,14,23h5l9.6-9.3c1.6-1.6,3.9-2,6-1.1c2.1,0.9,3.4,2.8,3.4,5.1v34.5c0,2.3-1.3,4.2-3.4,5.1 C33.9,57.7,33.1,57.8,32.4,57.8z M14,27c-1.7,0-3.3,0.7-4.5,2c-1,1.1-1.5,2.6-1.5,4.2V37c0,3.3,2.7,6,6,6h5c1,0,1.9,0.3,2.6,1 l0.1,0.1l9.7,9.3c0.7,0.7,1.5,0.4,1.7,0.3s0.9-0.5,0.9-1.4V17.7c0-1-0.7-1.3-0.9-1.4c-0.2-0.1-1-0.4-1.7,0.3L21.6,26 c-0.7,0.6-1.6,1-2.6,1H14z" />
+                </g>
+                <g class="speakerWaves">
+                    <path
+                        d="M56.9,57c-0.5,0-1-0.2-1.4-0.6c-0.7-0.8-0.7-2.1,0.1-2.9c4.9-4.9,7.5-11.4,7.5-18.5s-2.7-13.6-7.5-18.5 c-0.8-0.8-0.8-2.1-0.1-2.9c0.7-0.8,2-0.8,2.7-0.1C63.9,19.2,67,26.8,67,35c0,8.2-3.1,15.8-8.7,21.4C57.9,56.8,57.4,57,56.9,57z" />
+                    <path
+                        d="M51,52c-0.5,0-1-0.2-1.4-0.6c-0.8-0.8-0.8-2.1,0-2.9c3.5-3.6,5.5-8.4,5.5-13.6s-1.9-9.9-5.5-13.6 c-0.8-0.8-0.8-2.1,0-2.9c0.8-0.8,2-0.8,2.8,0C56.6,23,59,28.8,59,35s-2.4,12-6.6,16.4C52,51.8,51.5,52,51,52z" />
+                    <path
+                        d="M45,47c-0.5,0-1-0.2-1.4-0.6c-0.8-0.8-0.8-2.1,0-2.9c2.2-2.3,3.5-5.3,3.5-8.6c0-3.2-1.2-6.3-3.5-8.6 c-0.8-0.8-0.8-2.1,0-2.9c0.8-0.8,2-0.8,2.8,0c3,3,4.6,7.1,4.6,11.4s-1.6,8.4-4.6,11.4C46,46.8,45.5,47,45,47z" />
+                </g>
+            </svg>
+            <div class="link link-about link-border-color">About</div>
+            <a class="link-epic" href="https://www.epic.net" target="_blank">
+                <svg class="epic-logo-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100"
+                    xml:space="preserve">
+                    <defs>
+                        <linearGradient id="logo-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:rgb(188,153,78);stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:rgb(236,215,171);stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:rgb(188,153,78);stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <polygon
+                        points="88.9,38.1 69.9,26.7 69.9,4 12.6,38.1 12.6,38.1 12.6,83.5 12.6,83.5 31.7,94.8 50.8,83.5 31.7,72.1 31.7,49.4 50.8,60.8 69.9,49.4 69.9,72.1 50.8,83.5 69.9,94.8 88.9,83.5 88.9,83.5 88.9,83.5 88.9,60.8 88.9,48.1 88.9,38.1 " />
+                </svg>
+            </a>
+        </div>
+        <div class="moments-nav">
+            <div class="moments-nav-container">
+                <div class="link link-all link-border-color">
+                    <svg version="1.1" id="grid-svg" class="grid-icon" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 22 22"
+                        enable-background="new 0 0 22 22" xml:space="preserve">
+                        <g>
+                            <circle cx="19" cy="3" r="2" />
+                            <circle cx="19" cy="11" r="2" />
+                            <circle cx="11" cy="3" r="2" />
+                            <circle cx="11" cy="11" r="2" />
+                            <circle cx="3" cy="3" r="2" />
+                            <circle cx="3" cy="11" r="2" />
+                            <circle cx="19" cy="19" r="2" />
+                            <circle cx="11" cy="19" r="2" />
+                            <circle cx="3" cy="19" r="2" />
+                        </g>
+                    </svg>
+                    All moments
+                </div>
+                <div class="link link-previous link-border-color">Previous</div>
+                <div class="link link-next link-border-color">Next</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="lovie-banner">
+    <a href="https://vote.lovieawards.eu/PublicVoting#/2017/websites/website-single/weirdexperimental" target="_blank">
+      <img src="assets/images/lovie-banner-e7e9c928c7.png" width="157" height="134"/>
+    </a>
+  </div> -->
     <script>
-
-        //THREEJS RELATED VARIABLES 
-
-        var scene,
-            camera,
-            controls,
-            fieldOfView,
-            aspectRatio,
-            nearPlane,
-            farPlane,
-            shadowLight,
-            backLight,
-            light,
-            renderer,
-            container;
-
-        var clock = new THREE.Clock();
-        var time = 0;
-        var deltaTime = 0;
-
-        //SCENE
-        var floor, lion, fan,
-            isBlowing = false;
-
-        //SCREEN VARIABLES
-
-        var HEIGHT,
-            WIDTH,
-            windowHalfX,
-            windowHalfY,
-            mousePos = { x: 0, y: 0 };
-        dist = 0;
-
-        //INIT THREE JS, SCREEN AND MOUSE EVENTS
-
-        function init() {
-            scene = new THREE.Scene();
-            HEIGHT = window.innerHeight;
-            WIDTH = window.innerWidth;
-            aspectRatio = WIDTH / HEIGHT;
-            fieldOfView = 60;
-            nearPlane = 1;
-            farPlane = 2000;
-            camera = new THREE.PerspectiveCamera(
-                fieldOfView,
-                aspectRatio,
-                nearPlane,
-                farPlane);
-            camera.position.z = 800;
-            camera.position.y = 0;
-            camera.lookAt(new THREE.Vector3(0, 0, 0));
-            renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-            renderer.setPixelRatio(window.devicePixelRatio);
-            renderer.setSize(WIDTH, HEIGHT);
-            renderer.shadowMapEnabled = true;
-            container = document.getElementById('world');
-            container.appendChild(renderer.domElement);
-            windowHalfX = WIDTH / 2;
-            windowHalfY = HEIGHT / 2;
-            window.addEventListener('resize', onWindowResize, false);
-            document.addEventListener('mousemove', handleMouseMove, false);
-            document.addEventListener('mousedown', handleMouseDown, false);
-            document.addEventListener('mouseup', handleMouseUp, false);
-            document.addEventListener('touchstart', handleTouchStart, false);
-            document.addEventListener('touchend', handleTouchEnd, false);
-            document.addEventListener('touchmove', handleTouchMove, false);
-            /*
-            controls = new THREE.OrbitControls( camera, renderer.domElement);
-            //*/
-        }
-
-        function onWindowResize() {
-            HEIGHT = window.innerHeight;
-            WIDTH = window.innerWidth;
-            windowHalfX = WIDTH / 2;
-            windowHalfY = HEIGHT / 2;
-            renderer.setSize(WIDTH, HEIGHT);
-            camera.aspect = WIDTH / HEIGHT;
-            camera.updateProjectionMatrix();
-        }
-
-        function handleMouseMove(event) {
-            mousePos = { x: event.clientX, y: event.clientY };
-        }
-
-        function handleMouseDown(event) {
-            isBlowing = true;
-        }
-        function handleMouseUp(event) {
-            isBlowing = false;
-        }
-
-        function handleTouchStart(event) {
-            if (event.touches.length > 1) {
-                event.preventDefault();
-                mousePos = { x: event.touches[0].pageX, y: event.touches[0].pageY };
-                isBlowing = true;
-            }
-        }
-
-        function handleTouchEnd(event) {
-            //mousePos = {x:windowHalfX, y:windowHalfY};
-            isBlowing = false;
-        }
-
-        function handleTouchMove(event) {
-            if (event.touches.length == 1) {
-                event.preventDefault();
-                mousePos = { x: event.touches[0].pageX, y: event.touches[0].pageY };
-                isBlowing = true;
-            }
-        }
-
-        function createLights() {
-            light = new THREE.HemisphereLight(0xffffff, 0xffffff, .5)
-
-            shadowLight = new THREE.DirectionalLight(0xffffff, .8);
-            shadowLight.position.set(200, 200, 200);
-            shadowLight.castShadow = true;
-            shadowLight.shadowDarkness = .2;
-
-            backLight = new THREE.DirectionalLight(0xffffff, .4);
-            backLight.position.set(-100, 200, 50);
-            backLight.shadowDarkness = .1;
-            backLight.castShadow = true;
-
-            scene.add(backLight);
-            scene.add(light);
-            scene.add(shadowLight);
-        }
-
-        function createFloor() {
-            floor = new THREE.Mesh(new THREE.PlaneBufferGeometry(1000, 500), new THREE.MeshBasicMaterial({ color: 0xebe5e7 }));
-            floor.rotation.x = -Math.PI / 2;
-            floor.position.y = -100;
-            floor.receiveShadow = true;
-            scene.add(floor);
-        }
-
-        function createLion() {
-            lion = new Lion();
-            scene.add(lion.threegroup);
-        }
-
-        function createFan() {
-            fan = new Fan();
-            fan.threegroup.position.z = 350;
-            scene.add(fan.threegroup);
-        }
-
-        Fan = function () {
-            this.isBlowing = false;
-            this.speed = 0;
-            this.acc = 0;
-            this.redMat = new THREE.MeshLambertMaterial({
-                color: 0xad3525,
-                shading: THREE.FlatShading
-            });
-            this.greyMat = new THREE.MeshLambertMaterial({
-                color: 0x653f4c,
-                shading: THREE.FlatShading
-            });
-
-            this.yellowMat = new THREE.MeshLambertMaterial({
-                color: 0xfdd276,
-                shading: THREE.FlatShading
-            });
-
-            var coreGeom = new THREE.BoxGeometry(10, 10, 20);
-            var sphereGeom = new THREE.BoxGeometry(10, 10, 3);
-            var propGeom = new THREE.BoxGeometry(10, 30, 2);
-            propGeom.applyMatrix(new THREE.Matrix4().makeTranslation(0, 25, 0));
-
-            this.core = new THREE.Mesh(coreGeom, this.greyMat);
-
-            // propellers
-            var prop1 = new THREE.Mesh(propGeom, this.redMat);
-            prop1.position.z = 15;
-            var prop2 = prop1.clone();
-            prop2.rotation.z = Math.PI / 2;
-            var prop3 = prop1.clone();
-            prop3.rotation.z = Math.PI;
-            var prop4 = prop1.clone();
-            prop4.rotation.z = -Math.PI / 2;
-
-            this.sphere = new THREE.Mesh(sphereGeom, this.yellowMat);
-            this.sphere.position.z = 15;
-
-            this.propeller = new THREE.Group();
-            this.propeller.add(prop1);
-            this.propeller.add(prop2);
-            this.propeller.add(prop3);
-            this.propeller.add(prop4);
-
-            this.threegroup = new THREE.Group();
-            this.threegroup.add(this.core);
-            this.threegroup.add(this.propeller);
-            this.threegroup.add(this.sphere);
-        }
-
-        Fan.prototype.update = function (xTarget, yTarget, deltaTime) {
-            this.threegroup.lookAt(new THREE.Vector3(0, 80, 60));
-            this.tPosX = rule3(xTarget, -200, 200, -250, 250);
-            this.tPosY = rule3(yTarget, -200, 200, 250, -250);
-
-            this.threegroup.position.x += (this.tPosX - this.threegroup.position.x) * deltaTime * 4;
-            this.threegroup.position.y += (this.tPosY - this.threegroup.position.y) * deltaTime * 4;
-
-            this.targetSpeed = (this.isBlowing) ? 15 * deltaTime : 5 * deltaTime;
-            if (this.isBlowing && this.speed < this.targetSpeed) {
-                this.acc += .01 * deltaTime;
-                this.speed += this.acc;
-            } else if (!this.isBlowing) {
-                this.acc = 0;
-                this.speed *= Math.pow(.4, deltaTime);
-            }
-            this.propeller.rotation.z += this.speed;
-        }
-
-        Lion = function () {
-            this.windTime = 0;
-            this.bodyInitPositions = [];
-            this.maneParts = [];
-            this.threegroup = new THREE.Group();
-            this.yellowMat = new THREE.MeshLambertMaterial({
-                color: 0xfdd276,
-                shading: THREE.FlatShading
-            });
-            this.redMat = new THREE.MeshLambertMaterial({
-                color: 0xad3525,
-                shading: THREE.FlatShading
-            });
-
-            this.pinkMat = new THREE.MeshLambertMaterial({
-                color: 0xe55d2b,
-                shading: THREE.FlatShading
-            });
-
-            this.whiteMat = new THREE.MeshLambertMaterial({
-                color: 0xffffff,
-                shading: THREE.FlatShading
-            });
-
-            this.purpleMat = new THREE.MeshLambertMaterial({
-                color: 0x451954,
-                shading: THREE.FlatShading
-            });
-
-            this.greyMat = new THREE.MeshLambertMaterial({
-                color: 0x653f4c,
-                shading: THREE.FlatShading
-            });
-
-            this.blackMat = new THREE.MeshLambertMaterial({
-                color: 0x302925,
-                shading: THREE.FlatShading
-            });
-
-
-            var bodyGeom = new THREE.CylinderGeometry(30, 80, 140, 4);
-            var maneGeom = new THREE.BoxGeometry(40, 40, 15);
-            var faceGeom = new THREE.BoxGeometry(80, 80, 80);
-            var spotGeom = new THREE.BoxGeometry(4, 4, 4);
-            var mustacheGeom = new THREE.BoxGeometry(30, 2, 1);
-            mustacheGeom.applyMatrix(new THREE.Matrix4().makeTranslation(15, 0, 0));
-
-            var earGeom = new THREE.BoxGeometry(20, 20, 20);
-            var noseGeom = new THREE.BoxGeometry(40, 40, 20);
-            var eyeGeom = new THREE.BoxGeometry(5, 30, 30);
-            var irisGeom = new THREE.BoxGeometry(4, 10, 10);
-            var mouthGeom = new THREE.BoxGeometry(20, 20, 10);
-            var smileGeom = new THREE.TorusGeometry(12, 4, 2, 10, Math.PI);
-            var lipsGeom = new THREE.BoxGeometry(40, 15, 20);
-            var kneeGeom = new THREE.BoxGeometry(25, 80, 80);
-            kneeGeom.applyMatrix(new THREE.Matrix4().makeTranslation(0, 50, 0));
-            var footGeom = new THREE.BoxGeometry(40, 20, 20);
-
-            // body
-            this.body = new THREE.Mesh(bodyGeom, this.yellowMat);
-            this.body.position.z = -60;
-            this.body.position.y = -30;
-            this.bodyVertices = [0, 1, 2, 3, 4, 10];
-
-            for (var i = 0; i < this.bodyVertices.length; i++) {
-                var tv = this.body.geometry.vertices[this.bodyVertices[i]];
-                tv.z = 70;
-                //tv.x = 0;
-                this.bodyInitPositions.push({ x: tv.x, y: tv.y, z: tv.z });
-            }
-
-            // knee
-            this.leftKnee = new THREE.Mesh(kneeGeom, this.yellowMat);
-            this.leftKnee.position.x = 65;
-            this.leftKnee.position.z = -20;
-            this.leftKnee.position.y = -110;
-            this.leftKnee.rotation.z = -.3;
-
-            this.rightKnee = new THREE.Mesh(kneeGeom, this.yellowMat);
-            this.rightKnee.position.x = -65;
-            this.rightKnee.position.z = -20;
-            this.rightKnee.position.y = -110;
-            this.rightKnee.rotation.z = .3;
-
-            // feet
-            this.backLeftFoot = new THREE.Mesh(footGeom, this.yellowMat);
-            this.backLeftFoot.position.z = 30;
-            this.backLeftFoot.position.x = 75;
-            this.backLeftFoot.position.y = -90;
-
-            this.backRightFoot = new THREE.Mesh(footGeom, this.yellowMat);
-            this.backRightFoot.position.z = 30;
-            this.backRightFoot.position.x = -75;
-            this.backRightFoot.position.y = -90;
-
-            this.frontRightFoot = new THREE.Mesh(footGeom, this.yellowMat);
-            this.frontRightFoot.position.z = 40;
-            this.frontRightFoot.position.x = -22;
-            this.frontRightFoot.position.y = -90;
-
-            this.frontLeftFoot = new THREE.Mesh(footGeom, this.yellowMat);
-            this.frontLeftFoot.position.z = 40;
-            this.frontLeftFoot.position.x = 22;
-            this.frontLeftFoot.position.y = -90;
-
-            // mane
-
-            this.mane = new THREE.Group();
-
-            for (var j = 0; j < 4; j++) {
-                for (var k = 0; k < 4; k++) {
-                    var manePart = new THREE.Mesh(maneGeom, this.redMat);
-                    manePart.position.x = (j * 40) - 60;
-                    manePart.position.y = (k * 40) - 60;
-
-                    var amp;
-                    var zOffset;
-                    var periodOffset = Math.random() * Math.PI * 2;
-                    var angleOffsetY, angleOffsetX;
-                    var angleAmpY, angleAmpX;
-                    var xInit, yInit;
-
-
-                    if ((j == 0 && k == 0) || (j == 0 && k == 3) || (j == 3 && k == 0) || (j == 3 && k == 3)) {
-                        amp = -10 - Math.floor(Math.random() * 5);
-                        zOffset = -5;
-                    } else if (j == 0 || k == 0 || j == 3 || k == 3) {
-                        amp = -5 - Math.floor(Math.random() * 5);
-                        zOffset = 0;
-                    } else {
-                        amp = 0;
-                        zOffset = 0;
-                    }
-
-                    this.maneParts.push({ mesh: manePart, amp: amp, zOffset: zOffset, periodOffset: periodOffset, xInit: manePart.position.x, yInit: manePart.position.y });
-                    this.mane.add(manePart);
-                }
-            }
-
-            this.mane.position.y = -10;
-            this.mane.position.z = 80;
-            //this.mane.rotation.z = Math.PI/4;
-
-            // face
-            this.face = new THREE.Mesh(faceGeom, this.yellowMat);
-            this.face.position.z = 135;
-
-            // Mustaches
-
-            this.mustaches = [];
-
-            this.mustache1 = new THREE.Mesh(mustacheGeom, this.greyMat);
-            this.mustache1.position.x = 30;
-            this.mustache1.position.y = -5;
-            this.mustache1.position.z = 175;
-            this.mustache2 = this.mustache1.clone();
-            this.mustache2.position.x = 35;
-            this.mustache2.position.y = -12;
-            this.mustache3 = this.mustache1.clone();
-            this.mustache3.position.y = -19;
-            this.mustache3.position.x = 30;
-            this.mustache4 = this.mustache1.clone();
-            this.mustache4.rotation.z = Math.PI;
-            this.mustache4.position.x = -30;
-            this.mustache5 = new THREE.Mesh(mustacheGeom, this.blackMat);
-            this.mustache5 = this.mustache2.clone();
-            this.mustache5.rotation.z = Math.PI;
-            this.mustache5.position.x = -35;
-            this.mustache6 = new THREE.Mesh(mustacheGeom, this.blackMat);
-            this.mustache6 = this.mustache3.clone();
-            this.mustache6.rotation.z = Math.PI;
-            this.mustache6.position.x = -30;
-
-            this.mustaches.push(this.mustache1);
-            this.mustaches.push(this.mustache2);
-            this.mustaches.push(this.mustache3);
-            this.mustaches.push(this.mustache4);
-            this.mustaches.push(this.mustache5);
-            this.mustaches.push(this.mustache6);
-
-            // spots
-            this.spot1 = new THREE.Mesh(spotGeom, this.redMat);
-            this.spot1.position.x = 39;
-            this.spot1.position.z = 150;
-
-            this.spot2 = this.spot1.clone();
-            this.spot2.position.z = 160;
-            this.spot2.position.y = -10;
-
-            this.spot3 = this.spot1.clone();
-            this.spot3.position.z = 140;
-            this.spot3.position.y = -15;
-
-            this.spot4 = this.spot1.clone();
-            this.spot4.position.z = 150;
-            this.spot4.position.y = -20;
-
-            this.spot5 = this.spot1.clone();
-            this.spot5.position.x = -39;
-            this.spot6 = this.spot2.clone();
-            this.spot6.position.x = -39;
-            this.spot7 = this.spot3.clone();
-            this.spot7.position.x = -39;
-            this.spot8 = this.spot4.clone();
-            this.spot8.position.x = -39;
-
-            // eyes
-            this.leftEye = new THREE.Mesh(eyeGeom, this.whiteMat);
-            this.leftEye.position.x = 40;
-            this.leftEye.position.z = 120;
-            this.leftEye.position.y = 25;
-
-            this.rightEye = new THREE.Mesh(eyeGeom, this.whiteMat);
-            this.rightEye.position.x = -40;
-            this.rightEye.position.z = 120;
-            this.rightEye.position.y = 25;
-
-            // iris
-            this.leftIris = new THREE.Mesh(irisGeom, this.purpleMat);
-            this.leftIris.position.x = 42;
-            this.leftIris.position.z = 120;
-            this.leftIris.position.y = 25;
-
-            this.rightIris = new THREE.Mesh(irisGeom, this.purpleMat);
-            this.rightIris.position.x = -42;
-            this.rightIris.position.z = 120;
-            this.rightIris.position.y = 25;
-
-            // mouth
-            this.mouth = new THREE.Mesh(mouthGeom, this.blackMat);
-            this.mouth.position.z = 171;
-            this.mouth.position.y = -30;
-            this.mouth.scale.set(.5, .5, 1);
-
-            // smile
-            this.smile = new THREE.Mesh(smileGeom, this.greyMat);
-            this.smile.position.z = 173;
-            this.smile.position.y = -15;
-            this.smile.rotation.z = -Math.PI;
-
-            // lips
-            this.lips = new THREE.Mesh(lipsGeom, this.yellowMat);
-            this.lips.position.z = 165;
-            this.lips.position.y = -45;
-
-
-            // ear
-            this.rightEar = new THREE.Mesh(earGeom, this.yellowMat);
-            this.rightEar.position.x = -50;
-            this.rightEar.position.y = 50;
-            this.rightEar.position.z = 105;
-
-            this.leftEar = new THREE.Mesh(earGeom, this.yellowMat);
-            this.leftEar.position.x = 50;
-            this.leftEar.position.y = 50;
-            this.leftEar.position.z = 105;
-
-            // nose
-            this.nose = new THREE.Mesh(noseGeom, this.greyMat);
-            this.nose.position.z = 170;
-            this.nose.position.y = 25;
-
-            // head
-            this.head = new THREE.Group();
-            this.head.add(this.face);
-            this.head.add(this.mane);
-            this.head.add(this.rightEar);
-            this.head.add(this.leftEar);
-            this.head.add(this.nose);
-            this.head.add(this.leftEye);
-            this.head.add(this.rightEye);
-            this.head.add(this.leftIris);
-            this.head.add(this.rightIris);
-            this.head.add(this.mouth);
-            this.head.add(this.smile);
-            this.head.add(this.lips);
-            this.head.add(this.spot1);
-            this.head.add(this.spot2);
-            this.head.add(this.spot3);
-            this.head.add(this.spot4);
-            this.head.add(this.spot5);
-            this.head.add(this.spot6);
-            this.head.add(this.spot7);
-            this.head.add(this.spot8);
-            this.head.add(this.mustache1);
-            this.head.add(this.mustache2);
-            this.head.add(this.mustache3);
-            this.head.add(this.mustache4);
-            this.head.add(this.mustache5);
-            this.head.add(this.mustache6);
-
-
-            this.head.position.y = 60;
-
-            this.threegroup.add(this.body);
-            this.threegroup.add(this.head);
-            this.threegroup.add(this.leftKnee);
-            this.threegroup.add(this.rightKnee);
-            this.threegroup.add(this.backLeftFoot);
-            this.threegroup.add(this.backRightFoot);
-            this.threegroup.add(this.frontRightFoot);
-            this.threegroup.add(this.frontLeftFoot);
-
-            this.threegroup.traverse(function (object) {
-                if (object instanceof THREE.Mesh) {
-                    object.castShadow = true;
-                    object.receiveShadow = true;
-                }
-            });
-        }
-
-        Lion.prototype.updateBody = function (speed) {
-
-            this.head.rotation.y += (this.tHeagRotY - this.head.rotation.y) / speed;
-            this.head.rotation.x += (this.tHeadRotX - this.head.rotation.x) / speed;
-            this.head.position.x += (this.tHeadPosX - this.head.position.x) / speed;
-            this.head.position.y += (this.tHeadPosY - this.head.position.y) / speed;
-            this.head.position.z += (this.tHeadPosZ - this.head.position.z) / speed;
-
-            this.leftEye.scale.y += (this.tEyeScale - this.leftEye.scale.y) / (speed * 2);
-            this.rightEye.scale.y = this.leftEye.scale.y;
-
-            this.leftIris.scale.y += (this.tIrisYScale - this.leftIris.scale.y) / (speed * 2);
-            this.rightIris.scale.y = this.leftIris.scale.y;
-
-            this.leftIris.scale.z += (this.tIrisZScale - this.leftIris.scale.z) / (speed * 2);
-            this.rightIris.scale.z = this.leftIris.scale.z;
-
-            this.leftIris.position.y += (this.tIrisPosY - this.leftIris.position.y) / speed;
-            this.rightIris.position.y = this.leftIris.position.y;
-            this.leftIris.position.z += (this.tLeftIrisPosZ - this.leftIris.position.z) / speed;
-            this.rightIris.position.z += (this.tRightIrisPosZ - this.rightIris.position.z) / speed;
-
-            this.rightKnee.rotation.z += (this.tRightKneeRotZ - this.rightKnee.rotation.z) / speed;
-            this.leftKnee.rotation.z += (this.tLeftKneeRotZ - this.leftKnee.rotation.z) / speed;
-
-            this.lips.position.x += (this.tLipsPosX - this.lips.position.x) / speed;
-            this.lips.position.y += (this.tLipsPosY - this.lips.position.y) / speed;
-            this.smile.position.x += (this.tSmilePosX - this.smile.position.x) / speed;
-            this.mouth.position.z += (this.tMouthPosZ - this.mouth.position.z) / speed;
-            this.smile.position.z += (this.tSmilePosZ - this.smile.position.z) / speed;
-            this.smile.position.y += (this.tSmilePosY - this.smile.position.y) / speed;
-            this.smile.rotation.z += (this.tSmileRotZ - this.smile.rotation.z) / speed;
-        }
-
-        Lion.prototype.look = function (xTarget, yTarget) {
-            this.tHeagRotY = rule3(xTarget, -200, 200, -Math.PI / 4, Math.PI / 4);
-            this.tHeadRotX = rule3(yTarget, -200, 200, -Math.PI / 4, Math.PI / 4);
-            this.tHeadPosX = rule3(xTarget, -200, 200, 70, -70);
-            this.tHeadPosY = rule3(yTarget, -140, 260, 20, 100);
-            this.tHeadPosZ = 0;
-
-
-            this.tEyeScale = 1;
-            this.tIrisYScale = 1;
-            this.tIrisZScale = 1;
-            this.tIrisPosY = rule3(yTarget, -200, 200, 35, 15);
-            this.tLeftIrisPosZ = rule3(xTarget, -200, 200, 130, 110);
-            this.tRightIrisPosZ = rule3(xTarget, -200, 200, 110, 130);
-
-            this.tLipsPosX = 0;
-            this.tLipsPosY = -45;
-
-            this.tSmilePosX = 0;
-            this.tMouthPosZ = 174;
-            this.tSmilePosZ = 173;
-            this.tSmilePosY = -15;
-            this.tSmileRotZ = -Math.PI;
-
-            this.tRightKneeRotZ = rule3(xTarget, -200, 200, .3 - Math.PI / 8, .3 + Math.PI / 8);
-            this.tLeftKneeRotZ = rule3(xTarget, -200, 200, -.3 - Math.PI / 8, -.3 + Math.PI / 8)
-
-
-            this.updateBody(10);
-
-            this.mane.rotation.y = 0;
-            this.mane.rotation.x = 0;
-
-            for (var i = 0; i < this.maneParts.length; i++) {
-                var m = this.maneParts[i].mesh;
-                m.position.z = 0;
-                m.rotation.y = 0;
-            }
-
-            for (var i = 0; i < this.mustaches.length; i++) {
-                var m = this.mustaches[i];
-                m.rotation.y = 0;
-            }
-
-
-            for (var i = 0; i < this.bodyVertices.length; i++) {
-                var tvInit = this.bodyInitPositions[i];
-                var tv = this.body.geometry.vertices[this.bodyVertices[i]];
-                tv.x = tvInit.x + this.head.position.x;
-            }
-            this.body.geometry.verticesNeedUpdate = true;
-        }
-
-        Lion.prototype.cool = function (xTarget, yTarget, deltaTime) {
-            this.tHeagRotY = rule3(xTarget, -200, 200, Math.PI / 4, -Math.PI / 4);
-            this.tHeadRotX = rule3(yTarget, -200, 200, Math.PI / 4, -Math.PI / 4);
-            this.tHeadPosX = rule3(xTarget, -200, 200, -70, 70);
-            this.tHeadPosY = rule3(yTarget, -140, 260, 100, 20);
-            this.tHeadPosZ = 100;
-
-            this.tEyeScale = 0.1;
-            this.tIrisYScale = 0.1;
-            this.tIrisZScale = 3;
-
-            this.tIrisPosY = 20;
-            this.tLeftIrisPosZ = 120;
-            this.tRightIrisPosZ = 120;
-
-            this.tLipsPosX = rule3(xTarget, -200, 200, -15, 15);
-            this.tLipsPosY = rule3(yTarget, -200, 200, -45, -40);
-
-            this.tMouthPosZ = 168;
-            this.tSmilePosX = rule3(xTarget, -200, 200, -15, 15);
-            this.tSmilePosY = rule3(yTarget, -200, 200, -20, -8);
-            this.tSmilePosZ = 176;
-            this.tSmileRotZ = rule3(xTarget, -200, 200, -Math.PI - .3, -Math.PI + .3);
-
-            this.tRightKneeRotZ = rule3(xTarget, -200, 200, .3 + Math.PI / 8, .3 - Math.PI / 8);
-            this.tLeftKneeRotZ = rule3(xTarget, -200, 200, -.3 + Math.PI / 8, -.3 - Math.PI / 8);
-
-            this.updateBody(10);
-
-            this.mane.rotation.y = -.8 * this.head.rotation.y;
-            this.mane.rotation.x = -.8 * this.head.rotation.x;
-
-            var dt = 20000 / (xTarget * xTarget + yTarget * yTarget);
-            dt = Math.max(Math.min(dt, 1), .5);
-            this.windTime += dt * deltaTime * 40;
-
-            for (var i = 0; i < this.maneParts.length; i++) {
-                var m = this.maneParts[i].mesh;
-                var amp = this.maneParts[i].amp;
-                var zOffset = this.maneParts[i].zOffset;
-                var periodOffset = this.maneParts[i].periodOffset;
-
-                m.position.z = zOffset + Math.sin(this.windTime + periodOffset) * amp * dt * 2;
-            }
-
-            this.leftEar.rotation.x = Math.cos(this.windTime) * Math.PI / 16 * dt;
-            this.rightEar.rotation.x = -Math.cos(this.windTime) * Math.PI / 16 * dt;
-
-
-            for (var i = 0; i < this.mustaches.length; i++) {
-                var m = this.mustaches[i];
-                var amp = (i < 3) ? -Math.PI / 8 : Math.PI / 8;
-                m.rotation.y = amp + Math.cos(this.windTime + i) * dt * amp;
-            };
-
-            for (var i = 0; i < this.bodyVertices.length; i++) {
-                var tvInit = this.bodyInitPositions[i];
-                var tv = this.body.geometry.vertices[this.bodyVertices[i]];
-                tv.x = tvInit.x + this.head.position.x;
-            }
-            this.body.geometry.verticesNeedUpdate = true;
-        }
-
-        function loop() {
-
-            deltaTime = clock.getDelta();
-            time += deltaTime;
-
-            render();
-            var xTarget = (mousePos.x - windowHalfX);
-            var yTarget = (mousePos.y - windowHalfY);
-
-            fan.isBlowing = isBlowing;
-            fan.update(xTarget, yTarget, deltaTime);
-            if (isBlowing) {
-                lion.cool(xTarget, yTarget, deltaTime);
-            } else {
-                lion.look(xTarget, yTarget);
-            }
-            requestAnimationFrame(loop);
-        }
-
-        function render() {
-            if (controls) controls.update();
-            renderer.render(scene, camera);
-        }
-
-
-        init();
-        createLights();
-        createFloor();
-        createLion();
-        createFan();
-        loop();
-
-
-        function clamp(v, min, max) {
-            return Math.min(Math.max(v, min), max);
-        }
-
-        function rule3(v, vmin, vmax, tmin, tmax) {
-            var nv = Math.max(Math.min(v, vmax), vmin);
-            var dv = vmax - vmin;
-            var pc = (nv - vmin) / dv;
-            var dt = tmax - tmin;
-            var tv = tmin + (pc * dt);
-            return tv;
-
-        }
-
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-11116167-18', 'auto');
+        // ga('send', 'pageview');
+        // First pageview is sent by js
     </script>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+    <script src="/assets/scripts/main-2f2fbaa094.min.js" type="text/javascript"></script>
 </body>
 
 </html>
